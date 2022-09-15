@@ -1,0 +1,123 @@
+.header__nav {
+  background: var(--darker-white-color);
+  min-width: 1200px;
+  .header__nav--list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50.5px;
+    border-bottom: 1px solid var(--dark-color);
+    .header__nav--item {
+      width: 167px;
+      height: 100%;
+      position: relative;
+      a {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dark-color);
+        font-weight: 700;
+        font-size: 15px;
+        span {
+          position: relative;
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            right: 0;
+            left: -10%;
+            margin: auto;
+            width: 0px;
+            height: 4px;
+            background: var(--yellow-color);
+            transition: all 0.3s ease;
+          }
+        }
+        &:hover {
+          span {
+            &::after {
+              width: 120%;
+            }
+          }
+        }
+      }
+      &:first-child::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 36px;
+        width: 1px;
+        background: var(--dark-color);
+      }
+      &:last-child::after {
+        width: 0.5px;
+      }
+      &::before {
+        left: 0;
+      }
+      &::after {
+        right: 0;
+      }
+    }
+  }
+}
+
+.header__nav--mobile {
+  -webkit-tap-highlight-color: transparent;
+  background: var(--darker-white-color);
+  border-bottom: 1px solid var(--hover-dark-color);
+  .header__nav--list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 334px;
+    margin: auto;
+    padding: 7px 0 3px;
+    .header__nav--item {
+      width: 33.33333%;
+      height: 36px;
+      position: relative;
+      margin-bottom: 4px;
+      a {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dark-color);
+        font-weight: 700;
+        font-size: 15px;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 36px;
+        width: 1px;
+        background: var(--hover-dark-color);
+      }
+      &:last-child::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 36px;
+        width: 1px;
+        background: var(--hover-dark-color);
+      }
+      &::before {
+        left: 0;
+      }
+      &::after {
+        right: 0;
+      }
+    }
+  }
+}

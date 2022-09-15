@@ -1,0 +1,100 @@
+.rank__content {
+  li {
+    border-bottom: 1px solid var(--grey-color);
+    .rank__wrapper {
+      display: flex;
+      padding: 25px 0px;
+      width: 100%;
+      height: 100%;
+      color: var(--dark-color);
+      transition: opacity 0.3s ease;
+      .rank__thumb {
+        width: 100px;
+        min-height: 60px;
+        position: relative;
+        .icon__rank {
+          position: absolute;
+          color: #fff;
+          font-size: 14px;
+          font-weight: 700;
+          top: -5px;
+          left: 3px;
+          text-align: center;
+          padding-top: 4px;
+        }
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      .rank__detail {
+        margin-left: 10px;
+        width: 200px;
+        .rank__title {
+          font-size: 13px;
+          font-weight: 700;
+          margin-bottom: 8px;
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .rank__info {
+          time {
+            font-size: 11px;
+            color: var(--hover-dark-color);
+            margin-right: 5px;
+          }
+          .category {
+            font-size: 11px;
+            font-weight: 700;
+            background-color: var(--hover-header-color);
+            color: var(--white-color);
+            padding: 0px 6px 1px;
+            &.category-movie {
+              background-color: var(--movie-color);
+              color: var(--dark-color);
+            }
+          }
+        }
+      }
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+      .icon__rank {
+        background-size: 100% auto;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        width: 29px;
+        height: 38px;
+      }
+    }
+    &:nth-child(1) {
+      .icon__rank {
+        background-image: url(../../../../assets/common/bg_rank01.png);
+      }
+    }
+    &:nth-child(2) {
+      .icon__rank {
+        background-image: url(../../../../assets/common/bg_rank02.png);
+      }
+    }
+    &:nth-child(3) {
+      .icon__rank {
+        background-image: url(../../../../assets/common/bg_rank03.png);
+      }
+    }
+    &:nth-child(n + 4) {
+      .icon__rank {
+        width: 29px;
+        height: 29px;
+        background: #8c8f5b;
+        border-radius: 100%;
+      }
+    }
+  }
+}
