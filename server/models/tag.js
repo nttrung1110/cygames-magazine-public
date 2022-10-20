@@ -1,17 +1,13 @@
 const mongoose = require("mongoose");
+
 const Schema = mongoose.Schema;
 
 const TagSchema = new Schema(
   {
+    slug: { type: String, required: true, unique: true },
     title: {
       type: String,
       required: true,
-      unique: true,
-    },
-    url_name: {
-      type: String,
-      required: true,
-      unique: true,
     },
   },
   {
@@ -19,4 +15,4 @@ const TagSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model("tags", TagSchema);
+module.exports = mongoose.models.tag || mongoose.model("tags", TagSchema);

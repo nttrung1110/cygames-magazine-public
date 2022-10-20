@@ -1,20 +1,33 @@
 const mongoose = require("mongoose");
+
 const Schema = mongoose.Schema;
 
 const ArticleSchema = new Schema(
   {
-    url_name: {
+    slug: {
       type: String,
       required: true,
-    },
-    image_name: {
-      type: String,
-      required: true,
+      unique: true,
     },
     title: {
       type: String,
       required: true,
-      unique: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    thumbnail: {
+      type: Object,
+      url: {
+        type: String,
+        required: true,
+      },
+      public_id: {
+        type: String,
+        required: true,
+      },
+      required: true,
     },
     category: {
       type: String,
@@ -27,20 +40,20 @@ const ArticleSchema = new Schema(
         ref: "tags",
       },
     ],
-    content: {
-      type: String,
-      required: true,
-    },
-    meta_title: {
-      type: String,
-      required: true,
-    },
-    meta_description: {
-      type: String,
-      required: true,
-    },
-    meta_image: {
-      type: String,
+    meta: {
+      type: Object,
+      title: {
+        type: String,
+        required: true,
+      },
+      desctiption: {
+        type: String,
+        required: true,
+      },
+      image: {
+        type: String,
+        required: true,
+      },
       required: true,
     },
     isNewArticle: {
@@ -57,4 +70,5 @@ const ArticleSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model("articles", ArticleSchema);
+module.exports =
+  mongoose.models.article || mongoose.model("articles", ArticleSchema);

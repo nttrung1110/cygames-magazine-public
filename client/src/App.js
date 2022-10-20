@@ -1,51 +1,42 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Fragment } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Home from "./views/Home/Home";
-import Search from "./views/Search/Search";
-import Category from "./views/Category/Category";
-import Archives from "./views/Archives/Archives";
-import TagAll from "./views/Tag/TagAll/TagAll";
-import TagSingle from "./views/Tag/TagSingle/TagSingle";
-import NotFound from "./views/NotFound/NotFound";
+import { publicRoutes } from "~/routes";
 
-import LayoutProvider from "./contexts/LayoutContext";
-import ArticleProvider from "./contexts/ArticleContext";
-import TagProvider from "./contexts/TagContext";
+import DefaultLayout from "~/layout";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <LayoutProvider>
-        <TagProvider>
-          <ArticleProvider>
-            <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/search/page/:currentPage" element={<Search />} />
-              <Route path="/all" element={<Category />} />
-              <Route path="/all/page/:currentPage" element={<Category />} />
-              <Route path="/archives/:article_id" element={<Archives />} />
-              <Route
-                path="/archives/category/:category_name"
-                element={<Category />}
-              />
-              <Route
-                path="/archives/category/:category_name/page/:currentPage"
-                element={<Category />}
-              />
+      <div className="App">
+        <ScrollToTop />
+        <Routes>
+          {publicRoutes.map((route, index) => {
+            let Layout = DefaultLayout;
 
-              <Route path="/archives/tag/:tag_name" element={<TagSingle />} />
+            if (route.layout) {
+              Layout = route.layout;
+            } else if (route.layout === null) {
+              Layout = Fragment;
+            }
+
+            const Page = route.component;
+
+            return (
               <Route
-                path="/archives/tag/:tag_name/page/:currentPage"
-                element={<TagSingle />}
+                key={index}
+                path={route.path}
+                element={
+                  <Layout>
+                    <Page />
+                  </Layout>
+                }
               />
-              <Route path="/staffvoice" element={<Home />} />
-              <Route path="/tag_list" element={<TagAll />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </ArticleProvider>
-        </TagProvider>
-      </LayoutProvider>
+            );
+          })}
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };

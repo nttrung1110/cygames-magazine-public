@@ -1,16 +1,16 @@
 {
     "version": 2,
-    "name": "cygames-magazine-api",
+    "name": "cygames-magazine-mobile-api",
     "builds": [
         {
-            "src": "index.js",
+            "src": "app.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/index.js"
+            "dest": "/app.js"
         }
     ]
 }

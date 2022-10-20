@@ -1,0 +1,71 @@
+.share__area {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  p {
+    font-size: 12px;
+  }
+  ul {
+    margin-left: 34px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    li {
+      position: relative;
+      a {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        img {
+          transition: all 0.2s ease;
+        }
+      }
+      &:first-child {
+        height: 30px;
+        width: 30px;
+        background-image: url(../../assets/images/ico_sns_fb_on.svg);
+        &:hover {
+          img {
+            opacity: 0;
+          }
+        }
+      }
+      &:nth-child(2) {
+        height: 26px;
+        width: 32px;
+        background-image: url(../../assets/images/ico_sns_tw_on.svg);
+        &:hover {
+          img {
+            opacity: 0;
+          }
+        }
+      }
+      &:nth-child(3) {
+        height: 29px;
+        width: 29px;
+        background-image: url(../../assets/images/ico_sns_inst_on.svg);
+        &:hover {
+          img {
+            opacity: 0;
+          }
+        }
+      }
+      &:nth-child(4) {
+        height: 24px;
+        width: 34px;
+        background-image: url(../../assets/images/ico_sns_yt_on.svg);
+        &:hover {
+          img {
+            opacity: 0;
+          }
+        }
+      }
+      &:nth-child(n + 2) {
+        margin-left: 30px;
+      }
+    }
+  }
+}
