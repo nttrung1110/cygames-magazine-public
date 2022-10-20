@@ -15,6 +15,8 @@ import TagList from "~/components/TagList/TagList";
 
 import images from "~/assets/images";
 
+import checkPage from "~/utils/checkPage";
+
 import { getArticles } from "~/api/article";
 
 import "./TagSingle.scss";
@@ -77,7 +79,11 @@ const Tag_Single = () => {
     fetchArticlesByTag(slug, currentPage);
   };
 
-  if ((!loading && !tag) || (!loading && Object.keys(tag).length === 0))
+  if (
+    (!loading && !tag) ||
+    (!loading && Object.keys(tag).length === 0) ||
+    !checkPage(page ? page : 1, totalPage)
+  )
     return <NotFound />;
 
   // HELMET

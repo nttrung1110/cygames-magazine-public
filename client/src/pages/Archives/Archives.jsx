@@ -237,6 +237,7 @@ const Archives = () => {
         </div>
       </BrowserView>
       <MobileView className="main__column article">
+        {content__article}
         <TagList limit={10} />
         <RankList />
         <LinkImage data={images.Link_Home_2} url={"tech"} />

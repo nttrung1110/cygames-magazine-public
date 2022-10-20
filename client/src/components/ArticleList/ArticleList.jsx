@@ -59,7 +59,7 @@ const ArticleList = ({ articles, limit = 999, viewMoreButton }) => {
           })}
         </ul>
       </section>
-      {viewMoreButton && <ViewMoreButton url={"/all"} />}
+      {viewMoreButton && articles.length > 1 && <ViewMoreButton url={"/all"} />}
     </Fragment>
   );
 };

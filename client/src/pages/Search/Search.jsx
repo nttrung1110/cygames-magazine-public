@@ -45,7 +45,7 @@ const Search = () => {
   useEffect(() => {
     fetchArticlesBySearchValue(page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [searchKeyword]);
 
   // BREADCRUMBS
   const crumbs = [

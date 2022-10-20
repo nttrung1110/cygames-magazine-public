@@ -40,7 +40,10 @@ exports.createArticle = async (req, res) => {
 exports.getArticle = async (req, res) => {
   const { slug } = req.params;
 
-  const article = await Article.findOne({ slug })
+  const article = await Article.findOneAndUpdate(
+    { slug },
+    { $inc: { views: 1 } }
+  )
     .populate("tags", "slug title")
     .select("-__v -updatedAt");
 
@@ -218,10 +221,9 @@ exports.getArticles = async (req, res) => {
 
 exports.searchArticle = async (req, res) => {
   const page = parseInt(req.query.page) || 1; // current page
-  const search_keyword = req.query.s;
+  const searchKeyword = req.query.s;
 
   let search_query = [
-    { $sort: { createdAt: -1 } },
     {
       $lookup: {
         from: "tags",
@@ -244,12 +246,12 @@ exports.searchArticle = async (req, res) => {
   let count_query = [{ $count: "count" }];
 
   // check if search keyword has value, then add search keyword to query
-  if (search_keyword && search_keyword.trim().length !== 0) {
+  if (searchKeyword && searchKeyword.trim().length !== 0) {
     const seach_index = {
       $search: {
         index: "search_article",
         text: {
-          query: search_keyword,
+          query: searchKeyword,
           path: {
             wildcard: "*",
           },
@@ -259,6 +261,8 @@ exports.searchArticle = async (req, res) => {
 
     search_query.unshift(seach_index); // add seach keyword to search query
     count_query.unshift(seach_index); // add seach keyword to count query
+  } else {
+    search_query.unshift({ $sort: { createdAt: -1 } });
   }
 
   const articles = await Article.aggregate(search_query);

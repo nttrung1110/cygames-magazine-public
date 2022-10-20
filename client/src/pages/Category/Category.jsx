@@ -15,6 +15,8 @@ import TagList from "~/components/TagList/TagList";
 import CATEGORY from "~/assets/category";
 import images from "~/assets/images";
 
+import checkPage from "~/utils/checkPage";
+
 import { getArticles } from "~/api/article";
 
 import "./Category.scss";
@@ -77,7 +79,12 @@ const Category = () => {
     await fetchArticlesByCategory(category.name, currentPage);
   };
 
-  if (!category || Object.keys(category).length === 0) return <NotFound />;
+  if (
+    !category ||
+    Object.keys(category).length === 0 ||
+    !checkPage(page ? page : 1, totalPage)
+  )
+    return <NotFound />;
 
   // HELMET
   const TITLE = `${category.name.toUpperCase()} | Cygames Magazine | Cygames`;

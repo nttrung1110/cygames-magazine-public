@@ -7,6 +7,7 @@ import { setLayout } from "~/redux/layoutSlice";
 
 export default function ScrollToTop() {
   const { pathname } = useLocation();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
