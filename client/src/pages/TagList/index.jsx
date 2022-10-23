@@ -19,18 +19,6 @@ const cx = classNames.bind(styles);
 const TagList = () => {
   const { tags, loading } = useSelector((state) => state.tag);
 
-  // BREADCRUMBS
-  const crumbs = [
-    {
-      name: "TOP",
-      path: "/",
-    },
-    {
-      name: "TAG LIST",
-      path: false,
-    },
-  ];
-
   return (
     <Fragment>
       <Helmet>
@@ -45,7 +33,12 @@ const TagList = () => {
       <div className={cx("container", { mobile: isMobile })}>
         <div className={cx("main", { mobile: isMobile })}>
           <Breadcrumb
-            crumbs={crumbs}
+            data={[
+              {
+                name: "TAG LIST",
+                path: false,
+              },
+            ]}
             className={isMobile && "tagList--mobile"}
           />
 

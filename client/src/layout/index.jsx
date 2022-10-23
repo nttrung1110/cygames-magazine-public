@@ -1,20 +1,14 @@
-import { Fragment, useEffect, memo } from "react";
-import { isMobile } from "react-device-detect";
+import { Fragment, memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Navigation from "./components/Navigation";
 
 import { getArticles } from "~/api/article";
 
 import { setArticles } from "~/redux/articleSlice";
 
-const Layout = ({
-  children,
-  navigationBar = false,
-  showNavigationBarMobile = false,
-}) => {
+const Layout = ({ children }) => {
   const dispatch = useDispatch();
 
   const fetchArticles = async () => {
@@ -33,12 +27,6 @@ const Layout = ({
   return (
     <Fragment>
       <Header />
-
-      {navigationBar && showNavigationBarMobile ? (
-        <Navigation />
-      ) : (
-        navigationBar && !isMobile && <Navigation />
-      )}
 
       {children}
 

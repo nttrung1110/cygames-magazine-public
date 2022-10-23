@@ -27,15 +27,17 @@ const Search = () => {
   const searchKeyword = new URLSearchParams(window.location.search).get("s");
   const { page } = params;
 
+  const [loading, setLoading] = useState(false);
   const [articles, setArticles] = useState([]);
-  const [articlesCount, setArticlesCount] = useState(1);
-  const [totalPage, setTotalPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [articlesCount, setArticlesCount] = useState(0);
+  const [totalPage, setTotalPage] = useState(999);
 
-  const fetchArticlesBySearchValue = async (page) => {
+  const fetchArticlesBySearchValue = async (page = 1) => {
+    setLoading(true);
+
     const { articles, articlesCount, totalPage, error } = await searchArticle(
       searchKeyword,
-      page ? page : 1
+      page
     );
 
     setLoading(false);
@@ -52,23 +54,7 @@ const Search = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchKeyword]);
 
-  // BREADCRUMBS
-  const crumbs = [
-    {
-      name: "TOP",
-      path: "/",
-    },
-    {
-      name: "SEARCH",
-      path: false,
-    },
-    {
-      name: searchKeyword,
-      path: false,
-    },
-  ];
-
-  const handlePageClick = async (data) => {
+  const handlePageChange = async (data) => {
     const currentPage = data.selected + 1;
 
     await fetchArticlesBySearchValue(currentPage);
@@ -77,9 +63,10 @@ const Search = () => {
   if (searchKeyword === null) return <NotFound />;
 
   let articlesList = null;
+
   if (loading) {
     articlesList = <Spinner className={cx("search--mobile")} />;
-  } else if (articlesCount === 0) {
+  } else if (totalPage === 0) {
     articlesList = (
       <div className={cx("result", { mobile: isMobile })}>
         <h2>Search Results: 0</h2>
@@ -97,19 +84,20 @@ const Search = () => {
           searchKeyword={searchKeyword}
           currentPage={page ? page : 1}
           pageCount={totalPage}
-          handlePageClick={handlePageClick}
+          handlePageChange={handlePageChange}
           url={"search"}
         />
       </Fragment>
     );
   }
 
-  const TITLE = `${searchKeyword} | Cygames Magazine | Cygames`;
-
   return (
     <Fragment>
       <Helmet>
-        <title>{TITLE}</title>
+        <title>
+          {`${searchKeyword ? searchKeyword + " | " : ""}`}Cygames Magazine |
+          Cygames
+        </title>
         <meta
           name="description"
           content="Cygames Magazine's introductory article talks about the magazine's launch as a space to share information about Cygames, its team members, and various events."
@@ -118,12 +106,19 @@ const Search = () => {
 
       <div className={cx("container", { mobile: isMobile })}>
         <div className={cx("main", { mobile: isMobile })}>
-          {!loading && (
-            <Breadcrumb
-              crumbs={crumbs}
-              className={isMobile && "search--mobile"}
-            />
-          )}
+          <Breadcrumb
+            data={[
+              {
+                name: "SEARCH",
+                path: false,
+              },
+              {
+                name: searchKeyword,
+                path: false,
+              },
+            ]}
+            className={isMobile && "search--mobile"}
+          />
 
           {articlesList}
         </div>

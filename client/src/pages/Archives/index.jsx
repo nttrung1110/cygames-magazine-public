@@ -31,18 +31,24 @@ const Archives = () => {
 
   const { slug } = params;
 
+  const [notfound, setNotfound] = useState(false);
+  const [loading, setloading] = useState(false);
   const [article, setArticle] = useState({});
   const [prevArticle, setPrevArticle] = useState({});
   const [nextArticle, setNextArticle] = useState({});
   const [relatedArticles, setRelatedArticles] = useState([]);
-  const [loading, setloading] = useState(true);
 
   const fetchArticle = async () => {
+    setloading(true);
+
     const { article, relatedArticles, prevArticle, nextArticle, error } =
       await getArticle(slug);
+
     setloading(false);
 
-    if (error) return console.log(error);
+    if (error || (article && Object.keys(article).length === 0)) {
+      return setNotfound(true);
+    }
 
     setArticle(article);
     setRelatedArticles(relatedArticles);
@@ -55,17 +61,17 @@ const Archives = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
+  if (notfound) {
+    return <NotFound />;
+  }
+
   let content__article = null;
   let crumbs = [];
 
   if (loading) {
-    content__article = <Spinner />;
-  } else if (article !== null && Object.keys(article).length > 0) {
+    content__article = <Spinner className={cx("archives")} />;
+  } else if (!loading && Object.keys(article).length !== 0) {
     crumbs = [
-      {
-        name: "TOP",
-        path: "/",
-      },
       {
         name: `${article.category || ""}`,
         path: `/archives/category/${article.category.toLowerCase() || ""}`,
@@ -77,36 +83,37 @@ const Archives = () => {
     ];
 
     content__article = (
-      <article className={cx(isMobile && "content")}>
-        <ArticleHeader article={article} />
+      <Fragment>
+        <Breadcrumb data={crumbs} className={isMobile && "tag--mobile"} />
+        <article className={cx(isMobile && "content")}>
+          <ArticleHeader article={article} />
 
-        <div className={`article-body ${isMobile ? "mobile" : ""}`}>
-          {parse(article.content)}
-        </div>
+          <div className={`article-body ${isMobile ? "mobile" : ""}`}>
+            {parse(article.content)}
+          </div>
 
-        <ArticleFooter
-          article={article}
-          prevArticle={prevArticle}
-          nextArticle={nextArticle}
-        />
-      </article>
+          <ArticleFooter
+            article={article}
+            prevArticle={prevArticle}
+            nextArticle={nextArticle}
+          />
+        </article>
+        {relatedArticles.length > 0 && (
+          <RelatedArticles articles={relatedArticles} />
+        )}
+      </Fragment>
     );
   }
-
-  const TITLE = `${
-    article !== null && Object.keys(article).length > 0
-      ? article.title + " |"
-      : ""
-  }  Cygames Magazine | Cygames`;
-
-  if ((!loading && !article) || (!loading && Object.keys(article).length === 0))
-    return <NotFound />;
 
   return (
     <Fragment>
       <Helmet>
-        <title>{TITLE}</title>
+        <title>
+          {`${article.title ? article.title + " | " : ""}`}Cygames Magazine |
+          Cygames
+        </title>
         <meta name="description" content={article.meta_description} />
+
         {/* <!-- Facebook Meta Tags --> */}
         <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="article" />
@@ -136,13 +143,7 @@ const Archives = () => {
 
       <div className={cx("container", { mobile: isMobile })}>
         <div className={cx("main", { mobile: isMobile })}>
-          <Breadcrumb crumbs={crumbs} className={isMobile && "tag--mobile"} />
-
           {content__article}
-
-          {relatedArticles.length > 0 && (
-            <RelatedArticles articles={relatedArticles} />
-          )}
         </div>
 
         <div className={cx("sub", { mobile: isMobile })}>

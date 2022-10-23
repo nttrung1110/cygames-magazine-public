@@ -11,6 +11,7 @@ import Pagination from "~/components/Pagination";
 import RankList from "~/components/RankList";
 import Spinner from "~/components/Spinner";
 import TagList from "~/components/TagList";
+import Navigation from "~/components/Navigation";
 
 import CATEGORY from "~/assets/category";
 import images from "~/assets/images";
@@ -29,17 +30,20 @@ const Category = () => {
 
   const { slug, page } = params;
 
+  const [notfound, setNotfound] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState({});
-  const [paginateUrl, setPaginateUrl] = useState("");
   const [articles, setArticles] = useState([]);
-  const [totalPage, setTotalPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [totalPage, setTotalPage] = useState(999);
+  const [paginateUrl, setPaginateUrl] = useState("");
 
-  const fetchArticlesByCategory = async (category, page) => {
+  const fetchArticlesByCategory = async (category, page = 1) => {
+    setLoading(true);
+
     const { articles, totalPage, error } = await getArticles(
       category === "ALL" ? null : category,
       null,
-      page ? page : 1
+      page
     );
 
     setLoading(false);
@@ -55,7 +59,9 @@ const Category = () => {
       return category.path === (slug ? slug : "all");
     });
 
-    if (!category || Object.keys(category).length === 0) return;
+    setNotfound(false);
+
+    if (category === undefined) return setNotfound(true);
 
     if (category.path === "all") {
       setPaginateUrl("/all");
@@ -64,40 +70,28 @@ const Category = () => {
     }
 
     setCategory(category);
+
     fetchArticlesByCategory(category.name, page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, category, page]);
 
-  const handlePageClick = async (data) => {
+  const handlePageChange = async (data) => {
     const currentPage = data.selected + 1;
 
     await fetchArticlesByCategory(category.name, currentPage);
   };
 
-  if (
-    !category ||
-    Object.keys(category).length === 0 ||
-    !checkPage(page ? page : 1, totalPage)
-  )
+  if (notfound || !checkPage(page ? page : 1, totalPage)) {
     return <NotFound />;
-
-  const crumbs = [
-    {
-      name: "TOP",
-      path: "/",
-    },
-    {
-      name: slug ? slug.toUpperCase() : "ALL",
-      path: false,
-    },
-  ];
-
-  const TITLE = `${category.name.toUpperCase()} | Cygames Magazine | Cygames`;
+  }
 
   return (
     <Fragment>
       <Helmet>
-        <title>{TITLE}</title>
+        <title>
+          {`${category.name ? category.name + " | " : ""}`}Cygames Magazine |
+          Cygames
+        </title>
         <meta
           name="description"
           content="Cygames Magazine's introductory article talks about the magazine's launch as a space to share information about Cygames, its team members, and various events."
@@ -105,17 +99,24 @@ const Category = () => {
         <meta name="robots" content="noindex,follow" />
       </Helmet>
 
+      <Navigation />
+
       <div className={cx("top", { mobile: isMobile })}>
         <div className={cx("wrapper", { mobile: isMobile })}>
           <Breadcrumb
-            crumbs={crumbs}
+            data={[
+              {
+                name: category.name,
+                path: false,
+              },
+            ]}
             className={isMobile && "category--mobile"}
           />
 
           <div className={cx("title", { mobile: isMobile })}>
             <div className={cx("inner", { mobile: isMobile })}>
-              <h2>{category?.name}</h2>
-              {category?.description && <span>{category.description}</span>}
+              <h2>{category.name}</h2>
+              {category.description && <span>{category.description}</span>}
             </div>
           </div>
 
@@ -128,11 +129,11 @@ const Category = () => {
 
       <div className={cx("bottom", { mobile: isMobile })}>
         <div className={cx("main", { mobile: isMobile })}>
-          {!loading ? (
+          {!loading && articles.length > 0 ? (
             <Fragment>
               <ArticleList articles={articles} />
               <Pagination
-                handlePageClick={handlePageClick}
+                handlePageChange={handlePageChange}
                 pageCount={totalPage}
                 currentPage={page ? page : 1}
                 url={paginateUrl}

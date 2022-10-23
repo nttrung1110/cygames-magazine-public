@@ -13,12 +13,12 @@ const Pagination = ({
   searchKeyword,
   pageCount,
   currentPage,
-  handlePageClick,
+  handlePageChange,
   className,
 }) => {
   const navigate = useNavigate();
 
-  const handlePageChange = (data) => {
+  const handleClick = (data) => {
     scroll.scrollToTop({
       duration: 300,
       delay: 0,
@@ -51,7 +51,7 @@ const Pagination = ({
         pageCount={pageCount || 1}
         pageRangeDisplayed={2}
         marginPagesDisplayed={1}
-        onPageChange={handlePageClick}
+        onPageChange={handlePageChange}
         previousClassName={cx("prev")}
         nextClassName={cx("next")}
         breakClassName={cx("omit")}
@@ -69,7 +69,7 @@ const Pagination = ({
               ? `${url}/page/${page}` // page !== 1
               : `${url}` // page === 1
         }
-        onClick={(clickEvent) => handlePageChange(clickEvent)}
+        onClick={(clickEvent) => handleClick(clickEvent)}
       />
     </section>
   );

@@ -15,6 +15,7 @@ const NotFound = () => {
 
   useEffect(() => {
     const pathName = window.location.pathname.split("/").slice(1);
+
     const newPathName = pathName.reduce(function (pathName, path) {
       var fromCharCode = String.fromCharCode;
       var firstLetterOfWordRegExp = /\b[a-z]|['_][a-z]|\B[A-Z]/g;
@@ -37,17 +38,6 @@ const NotFound = () => {
     setTitle(`Nothing found for ${newPathName}`);
   }, []);
 
-  const crumbs = [
-    {
-      name: "TOP",
-      path: "/",
-    },
-    {
-      name: "Not Found",
-      path: false,
-    },
-  ];
-
   return (
     <Fragment>
       <Helmet>
@@ -60,7 +50,15 @@ const NotFound = () => {
       </Helmet>
 
       <div className={cx("container", { mobile: isMobile })}>
-        <Breadcrumb crumbs={crumbs} className={isMobile && "notfound"} />
+        <Breadcrumb
+          data={[
+            {
+              name: "Not Found",
+              path: false,
+            },
+          ]}
+          className={isMobile && "notfound"}
+        />
         <div className={cx("text")}>
           <h2>Not Found</h2>
           <p>404 error</p>

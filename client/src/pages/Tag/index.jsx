@@ -12,6 +12,7 @@ import Pagination from "~/components/Pagination";
 import RankList from "~/components/RankList";
 import Spinner from "~/components/Spinner";
 import TagList from "~/components/TagList";
+import Navigation from "~/components/Navigation";
 
 import images from "~/assets/images";
 
@@ -26,22 +27,22 @@ const cx = classNames.bind(styles);
 
 const Tag = () => {
   const { tags, loading } = useSelector((state) => state.tag);
+
   const params = useParams();
 
   const { slug, page } = params;
 
+  const [notfound, setNotfound] = useState(false);
+  const [loadingArticles, setLoadingArticles] = useState(false);
   const [tag, setTag] = useState({});
-  const [paginateUrl, setPaginateUrl] = useState("");
   const [articles, setArticles] = useState([]);
-  const [totalPage, setTotalPage] = useState(1);
-  const [loadingArticles, setLoadingArticles] = useState(true);
+  const [totalPage, setTotalPage] = useState(999);
+  const [paginateUrl, setPaginateUrl] = useState("");
 
-  const fetchArticlesByTag = async (tag, page) => {
-    const { articles, totalPage, error } = await getArticles(
-      null,
-      tag,
-      page ? page : 1
-    );
+  const fetchArticlesByTag = async (tag, page = 1) => {
+    setLoadingArticles(true);
+
+    const { articles, totalPage, error } = await getArticles(null, tag, page);
 
     setLoadingArticles(false);
 
@@ -56,10 +57,13 @@ const Tag = () => {
       return tag.slug === slug;
     });
 
+    setNotfound(false);
+
     if (!loading) {
-      if (!tag || Object.keys(tag).length === 0) return;
+      if (tag === undefined) return setNotfound(true);
 
       setPaginateUrl(`/archives/tag/${tag.slug}`);
+
       setTag(tag);
 
       fetchArticlesByTag(tag.slug, page);
@@ -67,38 +71,22 @@ const Tag = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags, slug, page]);
 
-  const handlePageClick = async (data) => {
+  const handlePageChange = async (data) => {
     const currentPage = data.selected + 1;
 
     fetchArticlesByTag(slug, currentPage);
   };
 
-  if (
-    (!loading && !tag) ||
-    (!loading && Object.keys(tag).length === 0) ||
-    !checkPage(page ? page : 1, totalPage)
-  )
+  if (notfound || !checkPage(page ? page : 1, totalPage)) {
     return <NotFound />;
-
-  const crumbs = [
-    {
-      name: "TOP",
-      path: "/",
-    },
-    {
-      name: `#${slug}`,
-      path: false,
-    },
-  ];
-
-  const TITLE = `${
-    tag && Object.keys(tag).length > 0 && `${tag.title}`
-  } | Cygames Magazine | Cygames`;
+  }
 
   return (
     <Fragment>
       <Helmet>
-        <title>{TITLE}</title>
+        <title>
+          {`${tag.title ? tag.title + " | " : ""}`}Cygames Magazine | Cygames
+        </title>
         <meta
           name="description"
           content="Cygames Magazine's introductory article talks about the magazine's launch as a space to share information about Cygames, its team members, and various events."
@@ -106,20 +94,30 @@ const Tag = () => {
         <meta name="robots" content="noindex,follow" />
       </Helmet>
 
+      <Navigation />
+
       <div className={cx("container", { mobile: isMobile })}>
         <div className={cx("main", { mobile: isMobile })}>
-          <Breadcrumb crumbs={crumbs} className={isMobile && "tag--mobile"} />
+          <Breadcrumb
+            data={[
+              {
+                name: `#${slug}`,
+                path: false,
+              },
+            ]}
+            className={isMobile && "tag--mobile"}
+          />
 
           <div className={cx("title", { mobile: isMobile })}>
             <h2>{tag.title}</h2>
           </div>
 
-          {!loadingArticles ? (
+          {!loadingArticles && articles.length > 0 ? (
             <Fragment>
               <ArticleList articles={articles} />
 
               <Pagination
-                handlePageClick={handlePageClick}
+                handlePageChange={handlePageChange}
                 pageCount={totalPage}
                 currentPage={page ? page : 1}
                 url={paginateUrl}

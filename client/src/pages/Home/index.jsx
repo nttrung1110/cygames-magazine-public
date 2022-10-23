@@ -10,6 +10,7 @@ import RankList from "~/components/RankList";
 import Slider from "~/components/Slider";
 import Spinner from "~/components/Spinner";
 import TagList from "~/components/TagList";
+import Navigation from "~/components/Navigation";
 
 import images from "~/assets/images";
 
@@ -58,7 +59,12 @@ const Home = () => {
         />
       </Helmet>
 
-      {!isMobile && <Slider />}
+      {!isMobile && (
+        <Fragment>
+          <Navigation />
+          <Slider />
+        </Fragment>
+      )}
 
       <div className={cx("container", { mobile: isMobile })}>
         {!loading ? (

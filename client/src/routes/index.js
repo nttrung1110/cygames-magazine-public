@@ -10,8 +10,6 @@ const publicRoutes = [
   {
     path: "/",
     component: Home,
-    navigationBar: true,
-    showNavigationBarMobile: true,
   },
   { path: "/search", component: Search },
   { path: "/search/page/:page", component: Search },
@@ -20,18 +18,15 @@ const publicRoutes = [
   {
     path: "/archives/category/:slug",
     component: Category,
-    navigationBar: true,
   },
   {
     path: "/archives/category/:slug/page/:page",
     component: Category,
-    navigationBar: true,
   },
-  { path: "/archives/tag/:slug", component: Tag, navigationBar: true },
+  { path: "/archives/tag/:slug", component: Tag },
   {
     path: "/archives/tag/:slug/page/:page",
     component: Tag,
-    navigationBar: true,
   },
   { path: "/archives/:slug", component: Archives },
   { path: "/tag_list", component: TagList },
