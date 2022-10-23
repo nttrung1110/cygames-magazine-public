@@ -1,10 +1,10 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { isMobile } from "react-device-detect";
+
+import { useSelector } from "react-redux";
 
 import Spinner from "../Spinner";
 import RankContent from "./RankContent";
-
-import { getArticlesRank } from "~/api/article";
 
 import classNames from "classnames/bind";
 import styles from "./RankList.module.scss";
@@ -12,27 +12,15 @@ import styles from "./RankList.module.scss";
 const cx = classNames.bind(styles);
 
 const RankList = ({ className }) => {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const fetchArticlesRank = async () => {
-    const { articles, error } = await getArticlesRank();
-    setLoading(false);
-
-    if (error) return console.log(error);
-
-    setArticles(articles);
-  };
-
-  useEffect(() => {
-    fetchArticlesRank();
-  }, []);
+  const { articles, loadingArticlesRank } = useSelector(
+    (state) => state.article
+  );
 
   return (
     <Fragment>
       <section className={cx("container", { mobile: isMobile }, className)}>
         <h2 className={cx("title")}>RANKING</h2>
-        {!loading ? (
+        {!loadingArticlesRank ? (
           <RankContent articles={articles} />
         ) : (
           <Spinner className={cx("rank")} />

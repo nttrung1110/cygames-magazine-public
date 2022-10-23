@@ -2,9 +2,16 @@ import * as httpRequest from "../utils/httpRequest";
 
 export const getArticles = async (category, tag, page) => {
   try {
-    const res = await httpRequest.getAPI(
-      `article/getArticles?category=${category}&tag=${tag}&page=${page}`
-    );
+    let url = "?";
+
+    if (category) url += `category=${category}&`;
+    else if (tag) url += `tag=${tag}&`;
+
+    if (page) url += `page=${page}`;
+
+    if (url === "?") url = "";
+
+    const res = await httpRequest.getAPI(`article/getArticles${url}`);
 
     return res;
   } catch (error) {

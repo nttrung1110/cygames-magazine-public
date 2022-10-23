@@ -46,7 +46,7 @@ const Tag = () => {
 
     setLoadingArticles(false);
 
-    if (error) return console.log(error);
+    if (error) return setNotfound(true);
 
     setArticles(articles);
     setTotalPage(totalPage);

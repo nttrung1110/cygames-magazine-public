@@ -1,13 +1,9 @@
-import { Fragment, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Fragment } from "react";
+import { useSelector } from "react-redux";
 
-import Spinner from "../Spinner";
 import NavigationButton from "../NavigationButton";
+import Spinner from "../Spinner";
 import TagsContent from "./TagContent";
-
-import { getTags } from "~/api/tag";
-
-import { setTags } from "~/redux/tagSlice";
 
 import classNames from "classnames/bind";
 import styles from "./TagList.module.scss";
@@ -16,21 +12,6 @@ const cx = classNames.bind(styles);
 
 const TagList = ({ limit = 999, border = true, className }) => {
   const { tags, loading } = useSelector((state) => state.tag);
-  const dispatch = useDispatch();
-
-  const fetchTags = async () => {
-    const { tags, error } = await getTags();
-
-    if (error) return console.log(error);
-
-    dispatch(setTags({ tags }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  };
-
-  useEffect(() => {
-    fetchTags();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <section className={cx("container", className)}>

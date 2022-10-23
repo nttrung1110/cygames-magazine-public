@@ -48,7 +48,7 @@ const Category = () => {
 
     setLoading(false);
 
-    if (error) return console.log(error);
+    if (error) return setNotfound(true);
 
     setArticles(articles);
     setTotalPage(totalPage);
@@ -73,7 +73,7 @@ const Category = () => {
 
     fetchArticlesByCategory(category.name, page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slug, category, page]);
+  }, [slug, page]);
 
   const handlePageChange = async (data) => {
     const currentPage = data.selected + 1;

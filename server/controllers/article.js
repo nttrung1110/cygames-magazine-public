@@ -233,6 +233,7 @@ exports.searchArticle = async (req, res) => {
         as: "tags",
       },
     },
+    { $sort: { createdAt: -1 } },
     { $skip: page * LIMIT - LIMIT },
     { $limit: LIMIT },
     {
@@ -248,21 +249,28 @@ exports.searchArticle = async (req, res) => {
   // check if search keyword has value, then add search keyword to query
   if (searchKeyword && searchKeyword.trim().length !== 0) {
     const seach_index = {
-      $search: {
-        index: "search_article",
-        text: {
-          query: searchKeyword,
-          path: {
-            wildcard: "*",
-          },
-        },
+      $match: {
+        $or: [
+          { title: new RegExp(searchKeyword, "i") },
+          { content: new RegExp(searchKeyword, "i") },
+        ],
       },
     };
 
+    // const seach_index = {
+    //   $search: {
+    //     index: "search_article",
+    //     text: {
+    //       query: searchKeyword,
+    //       path: {
+    //         wildcard: "*",
+    //       },
+    //     },
+    //   },
+    // };
+
     search_query.unshift(seach_index); // add seach keyword to search query
     count_query.unshift(seach_index); // add seach keyword to count query
-  } else {
-    search_query.unshift({ $sort: { createdAt: -1 } });
   }
 
   const articles = await Article.aggregate(search_query);
