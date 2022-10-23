@@ -28,7 +28,10 @@ const App = () => {
                 key={index}
                 path={route.path}
                 element={
-                  <Layout>
+                  <Layout
+                    navigationBar={route.navigationBar}
+                    showNavigationBarMobile={route.showNavigationBarMobile}
+                  >
                     <Page />
                   </Layout>
                 }

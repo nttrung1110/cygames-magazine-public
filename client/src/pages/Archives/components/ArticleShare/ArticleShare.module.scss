@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--dark-color);
+    border-top: 1px solid var(--dark-color);
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s ease-in-out;
+
+    span {
+        display: flex;
+        align-items: center;
+        height: 20px;
+        padding-right: 6px;
+        color: var(--white-color);
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    &:hover {
+        opacity: .5;
+    }
+}
+
+.facebook {
+    padding-right: 20px;
+
+    span {
+        background-color: #3b5998;
+    }
+}
+
+.twitter {
+    span {
+        background-color: #00aced;
+    }
+}

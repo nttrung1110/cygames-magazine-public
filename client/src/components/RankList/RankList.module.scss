@@ -1,0 +1,37 @@
+.container {
+  margin-bottom: 80px;
+
+  &.mobile {
+    margin-bottom: 0;
+    padding: 30px 0;
+    background-color: var(--darker-white-color);
+  }
+}
+
+.title {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 16.5px;
+  font-size: 20px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 40px;
+    height: 1px;
+    margin: auto;
+    background-color: var(--lighter-dark-color);
+  }
+}
+
+// additional classname
+.home,
+.tagList,
+.tag,
+.search {
+  margin-top: 80px;
+}

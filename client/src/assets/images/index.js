@@ -1,5 +1,6 @@
 const images = {
   // IMAGE
+  no_image: require("~/assets/images/no-image.png"),
   bg_rank01: require("~/assets/images/bg_rank01.png"),
   bg_rank02: require("~/assets/images/bg_rank02.png"),
   bg_rank03: require("~/assets/images/bg_rank03.png"),
@@ -30,6 +31,14 @@ const images = {
   ico_sns_yt: require("~/assets/images/ico_sns_yt.svg").default,
   logo_cygames_white: require("~/assets/images/logo_cygames_white.svg").default,
   txt_language: require("~/assets/images/txt_language.svg").default,
+  icon_arrow_left_white: require("~/assets/images/icon_arrow_left-white.svg")
+    .default,
+  icon_arrow_right_white: require("~/assets/images/icon_arrow_right-white.svg")
+    .default,
+  icon_arrow_left_black: require("~/assets/images/icon_arrow_left-black.svg")
+    .default,
+  icon_arrow_right_black: require("~/assets/images/icon_arrow_right-black.svg")
+    .default,
 };
 
 export default images;

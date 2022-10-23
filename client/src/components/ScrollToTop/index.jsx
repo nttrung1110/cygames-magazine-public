@@ -5,7 +5,7 @@ import { animateScroll as scroll } from "react-scroll";
 
 import { setLayout } from "~/redux/layoutSlice";
 
-export default function ScrollToTop() {
+const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   const dispatch = useDispatch();
@@ -22,4 +22,6 @@ export default function ScrollToTop() {
   }, [pathname]);
 
   return null;
-}
+};
+
+export default ScrollToTop;

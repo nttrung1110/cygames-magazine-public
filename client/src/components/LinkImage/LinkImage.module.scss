@@ -1,0 +1,21 @@
+.container {
+  a {
+    display: block;
+    transition: all ease 0.3s;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+// additional classname
+.home--mobile,
+.category--mobile,
+.tagList--mobile,
+.tag--mobile,
+.search--mobile {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0 40px;
+}

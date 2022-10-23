@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.border {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: text-bottom;
+    border: 0.25rem solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    color: var(--yellow-color);
+}
+
+@keyframes spinner-border {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// additional classname
+.slider {
+    height: 553px;
+    margin: 48px 0 113px;
+}
+
+.home,
+.rank,
+.tagComponent {
+    margin: 40px 0;
+}
+
+.home {
+    flex: 1;
+}
+
+.tagList,
+.search--mobile {
+    margin-top: 25px;
+}
