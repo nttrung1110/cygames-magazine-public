@@ -35,7 +35,10 @@ const Home = () => {
         <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Cygames Magazine | Cygames" />
-        <meta property="og:image" content={images.ogp} />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/nt1110/image/upload/v1666587111/cygames-magazine/ogp_ykqoxv.png"
+        />
         <meta
           property="og:description"
           content="Cygames Magazine's introductory article talks about the magazine's launch as a space to share information about Cygames, its team members, and various events."
@@ -50,7 +53,10 @@ const Home = () => {
           name="twitter:description"
           content="Cygames Magazine's introductory article talks about the magazine's launch as a space to share information about Cygames, its team members, and various events."
         />
-        <meta name="twitter:image" content={images.ogp} />
+        <meta
+          name="twitter:image"
+          content="https://res.cloudinary.com/nt1110/image/upload/v1666587111/cygames-magazine/ogp_ykqoxv.png"
+        />
       </Helmet>
 
       {!isMobile && (
