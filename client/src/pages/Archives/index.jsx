@@ -112,7 +112,7 @@ const Archives = () => {
           {`${article.title ? article.title + " | " : ""}`}Cygames Magazine |
           Cygames
         </title>
-        <meta name="description" content={article.meta?.description} />
+        <meta name="description" content={article?.meta?.description} />
 
         {/* <!-- Facebook Meta Tags --> */}
         <meta property="og:url" content={window.location.href} />
