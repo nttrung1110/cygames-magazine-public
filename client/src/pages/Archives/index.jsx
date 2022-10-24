@@ -126,10 +126,7 @@ const Archives = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@CygamesMagazine" />
         <meta name="twitter:domain" content="cygames-magazine.vercel.app" />
-        <meta
-          name="twitter:title"
-          content={`${article?.meta?.title} | Cygames Magazine | Cygames`}
-        />
+        <meta name="twitter:title" content={`${article?.meta?.title}`} />
         <meta name="twitter:description" content={article?.meta?.description} />
 
         <meta name="twitter:image" content={article?.meta?.image} />
