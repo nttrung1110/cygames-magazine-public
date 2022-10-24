@@ -12,7 +12,7 @@ import styles from "./RankList.module.scss";
 const cx = classNames.bind(styles);
 
 const RankList = ({ className }) => {
-  const { articles, loadingArticlesRank } = useSelector(
+  const { articlesRank, loadingArticlesRank } = useSelector(
     (state) => state.article
   );
 
@@ -21,7 +21,7 @@ const RankList = ({ className }) => {
       <section className={cx("container", { mobile: isMobile }, className)}>
         <h2 className={cx("title")}>RANKING</h2>
         {!loadingArticlesRank ? (
-          <RankContent articles={articles} />
+          <RankContent articles={articlesRank} />
         ) : (
           <Spinner className={cx("rank")} />
         )}
