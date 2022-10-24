@@ -21,7 +21,7 @@ const ArticleShare = ({ article }) => {
       </FacebookShareButton>
 
       <TwitterShareButton
-        title={`${article.meta.title} | Cygames Magazine | Cygames`}
+        title={`${article?.meta?.title} | Cygames Magazine | Cygames`}
         url={window.location.href}
         hashtags={[`CygamesMagazine`]}
       >
