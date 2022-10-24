@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "cygames-magazine-mobile-api",
+    "name": "cygames-magazine-api",
     "builds": [
         {
             "src": "app.js",

@@ -99,7 +99,7 @@ exports.getArticle = async (req, res) => {
 exports.updateArticle = async (req, res) => {
   const { articleId } = req.params;
 
-  const { slug, title, content, category, tags } = req.body;
+  const { slug, title, content, category, tags, meta } = req.body;
   const { file } = req;
 
   const article = await Article.findById(articleId);
@@ -150,6 +150,7 @@ exports.updateArticle = async (req, res) => {
   article.content = content;
   article.category = category;
   article.tags = tags;
+  article.meta = meta;
 
   await article.save();
 

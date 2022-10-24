@@ -1,0 +1,541 @@
+:root {
+    --white-color: #ffffff;
+    --darker-white-color: #f8f8f8;
+    --grey-color: #e5e5e5;
+    --darker-grey-color: #666666;
+    --yellow-color: #fff100;
+    --movie-color: #ffdd00;
+    --dark-color: #000000;
+    --hover-dark-color: #888888;
+    --lighter-dark-color: #333333;
+    --hover-header-color: #444444;
+  }
+
+.article-body {
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: 0.05em;
+    word-break: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    p {
+        margin-bottom: 30px;
+
+        &.sm {
+            font-size: 13px;
+        }
+
+        &.side-border {
+            margin-bottom: 40px;
+            margin-left: 18px;
+            padding-left: 17px;
+            border-left: 5px solid #e5e5e5;
+        }
+    }
+
+    b {
+        font-weight: bolder;
+    }
+
+    h2 {
+        &.lg {
+            position: relative;
+            margin: 70px 0 40px;
+            padding: 16px 0 16px 22px;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.75;
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: -5px;
+                width: 10px;
+                height: 100%;
+                margin: auto;
+                background: #fff100;
+            }
+        }
+
+        &.md {
+            margin: 54px 0 27px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        &.sm {
+            margin: 32px 0 16px;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.9;
+        }
+    }
+
+    h3 {
+        margin-top: 40px;
+        margin: 0 0 20px;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    hr {
+        margin: 30px 0;
+    }
+
+    figure.block-iframe,
+    figure.block-video {
+        margin-bottom: 40px;
+        line-height: 0;
+        text-align: center;
+
+        iframe {
+            width: 690px;
+            height: 388px;
+            margin: 0 auto;
+        }
+
+        figcaption {
+            display: inline-block;
+            max-width: 100%;
+            margin: 10px 0;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.6;
+            text-align: justify;
+            line-break: loose;
+        }
+    }
+
+    figure.block-image {
+        margin-bottom: 40px;
+        line-height: 0;
+        text-align: center;
+
+        img {
+            display: block;
+            max-width: 100%;
+            margin: auto;
+            height: auto;
+        }
+
+        figcaption {
+            display: inline-block;
+            max-width: 100%;
+            margin: 10px 0;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.6;
+            text-align: justify;
+            line-break: loose;
+        }
+
+        &.resized {
+            display: table;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    a {
+        color: #09c;
+        text-decoration: underline;
+
+        &:hover {
+            color: #078;
+            text-decoration: none;
+        }
+    }
+
+    .profile {
+        position: relative;
+        background-color: #f8f8f8;
+        padding: 30px 30px 30px 150px;
+        margin: 0 0 20px;
+    }
+
+    .profile dl {
+        margin-bottom: 0;
+    }
+
+    .profile dl dt {
+        margin-bottom: 10px;
+        line-height: 1;
+    }
+
+    .profile dl dt .info {
+        margin-bottom: 0;
+    }
+
+    .profile dl dt .team {
+        font-size: 14px;
+        color: #666;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .profile dl dt .name {
+        font-size: 22px;
+    }
+
+    .profile dl dt .wrapper-img {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .profile dl dt .wrapper-img img {
+        width: 100%;
+        height: auto;
+    }
+
+    .profile dl dd {
+        font-size: 14px;
+    }
+
+    .profile dl dt .info {
+        display: flex;
+        flex-flow: column-reverse;
+        width: 100%;
+    }
+
+    .profile dl dt .info .team {
+        margin-bottom: 0;
+    }
+
+    .profile dl dt .info .name {
+        margin-bottom: 8px;
+    }
+
+    strong {
+        font-weight: 700;
+        font-style: normal;
+        background: linear-gradient(transparent 78%, var(--yellow-color) 0);
+    }
+
+    table {
+        width: 100%;
+        margin: 0 0 20px;
+        border: 1px solid #000;
+        border-collapse: collapse;
+
+        tr:first-child td {
+            padding: 8px 3px;
+            color: #fff;
+            background-color: #000;
+            text-align: center;
+        }
+
+        td {
+            padding: 8px 3px;
+            border: 1px solid #000;
+        }
+
+        th {
+            padding: 8px 3px;
+            color: #fff;
+            background-color: #000;
+        }
+
+    }
+
+    blockquote {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 40px;
+        margin-inline-end: 40px;
+    }
+
+    .speech-bubble {
+        position: relative;
+        min-height: 60px;
+        padding-top: 13px;
+        margin: 0 0 20px;
+        box-sizing: border-box;
+    }
+
+    .speech-bubble dt {
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .speech-bubble dt .wrapper-img {
+        display: block;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        margin: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+    }
+
+    .speech-bubble dt .wrapper-img img {
+        width: 100%;
+        height: auto;
+    }
+
+    .speech-bubble dd {
+        position: relative;
+        border: 1px solid #ddd;
+        padding: 22px;
+        font-size: 16px;
+    }
+
+    .speech-bubble dd:before {
+        position: absolute;
+        top: -1px;
+        content: "";
+        border: 10px solid transparent;
+        border-top: 10px solid #ddd;
+    }
+
+    .speech-bubble dd:after {
+        position: absolute;
+        top: 0;
+        content: "";
+        border: 10px solid transparent;
+        border-top: 10px solid #fff;
+    }
+
+    .speech-bubble dd p {
+        margin-bottom: 1em;
+    }
+
+    .speech-bubble.face-left {
+        padding-left: 75px;
+    }
+
+    .speech-bubble.face-left dt {
+        text-align: left;
+    }
+
+    .speech-bubble.face-left dt .wrapper-img {
+        left: 0;
+    }
+
+    .speech-bubble.face-left dd:before {
+        left: -11px;
+    }
+
+    .speech-bubble.face-left dd:after {
+        left: -9px;
+    }
+
+    .speech-bubble.face-right {
+        padding-right: 75px;
+    }
+
+    .speech-bubble.face-right dt {
+        text-align: right;
+    }
+
+    .speech-bubble.face-right dt .wrapper-img {
+        right: 0;
+    }
+
+    .speech-bubble.face-right dd:before {
+        right: -11px;
+    }
+
+    .speech-bubble.face-right dd:after {
+        right: -9px;
+    }
+
+    .link-btn {
+        display: block;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .link-btn a {
+        position: relative;
+        display: inline-block;
+        box-sizing: border-box;
+        border: 3px solid #000;
+        border-radius: 40px;
+        padding: 20px 60px 19px;
+        width: 100%;
+        text-align: center;
+        background-color: #000;
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
+        text-decoration: none;
+    }
+
+    .link-btn a:after {
+        content: "";
+        display: block;
+        background: url(../../assets/images/icon_arrow_right-white.svg);
+        background-position: 50%;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        width: 14.7px;
+        height: 12.7px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 40px;
+        margin: auto;
+    }
+
+    .link-btn a:hover {
+        background-color: #fff;
+        color: #000;
+        opacity: 1;
+    }
+
+    .link-btn a:hover:after {
+        background: url(../../assets/images/icon_arrow_right-black.svg);
+        background-position: 50%;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+}
+
+.article-body.mobile {
+    font-size: 15px;
+
+    figure.block-iframe {
+        iframe {
+            width: 100%;
+            height: 51.7vw;
+        }
+    }
+
+    figure.block-video {
+        video {
+            width: 100%;
+            height: auto;
+        }
+
+    }
+    
+    .profile {
+        padding: 29px 20px 21px;
+        font-size: 12px;
+    }
+
+    .profile dl dt {
+        margin-bottom: 25px;
+        margin-left: 65px;
+    }
+
+    .profile dl dd {
+        font-size: 12px;
+    }
+
+    .profile dl dt .team {
+        margin-bottom: 0;
+        font-size: 12px;
+    }
+
+    .profile dl dt .name {
+        margin-bottom: 7px;
+        font-size: 16px;
+    }
+
+    .profile dl dt .wrapper-img {
+        top: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+    }
+
+    h2 {
+        &.lg {
+            margin: 35px 0 20px;
+            padding: 16px 0 16px 22px;
+            font-size: 15px;
+        }
+
+        &.md {
+            margin: 27px 0 13.5px;
+            font-size: 16px;
+        }
+
+        &.sm {
+            margin: 16px 0 8px;
+            font-size: 15px;
+        }
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+
+    .speech-bubble {
+        min-height: 50px;
+        padding-top: 10px;
+    }
+
+    .speech-bubble dt {
+        font-size: 11px;
+    }
+
+    .speech-bubble dt .wrapper-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+    }
+
+    .speech-bubble dd {
+        padding: 18px;
+        font-size: 14px;
+    }
+
+    .speech-bubble dd:before {
+        border: 8px solid transparent;
+        border-top: 8px solid #ddd;
+    }
+
+    .speech-bubble dd:after {
+        border: 8px solid transparent;
+        border-top: 8px solid #fff;
+    }
+
+    .speech-bubble.face-left {
+        padding-left: 62px;
+    }
+
+    .speech-bubble.face-left dd:before {
+        left: -9px;
+    }
+
+    .speech-bubble.face-left dd:after {
+        left: -7px;
+    }
+
+    .speech-bubble.face-right {
+        padding-right: 62px;
+    }
+
+    .speech-bubble.face-right dd:before {
+        right: -9px;
+    }
+
+    .speech-bubble.face-right dd:after {
+        right: -7px;
+    }
+
+    .link-btn a {
+        padding: 10px 27px 9px;
+        font-size: 12px;
+    }
+
+    .link-btn a:after {
+        width: 10.7px;
+        height: 8.7px;
+        right: 17px;
+    }
+}

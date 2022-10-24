@@ -112,33 +112,27 @@ const Archives = () => {
           {`${article.title ? article.title + " | " : ""}`}Cygames Magazine |
           Cygames
         </title>
-        <meta name="description" content={article.meta_description} />
+        <meta name="description" content={article.meta.description} />
 
         {/* <!-- Facebook Meta Tags --> */}
         <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={article.meta} />
-        <meta
-          property="og:image"
-          content={`https://res.cloudinary.com/cygames-magazine/image/upload/v1643205212/uploads/${article.meta}.png`}
-        />
-        <meta property="og:description" content={article.meta_description} />
+        <meta property="og:title" content={article.meta.title} />
+        <meta property="og:image" content={article.meta.image} />
+        <meta property="og:description" content={article.meta.description} />
 
         {/* <!-- Twitter Meta Tags --/> */}
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@CygamesMagazine" />
-        <meta name="twitter:domain" content="cygames-magazine.netlify.app" />
+        <meta name="twitter:domain" content="cygames-magazine.vercel.app" />
         <meta
           name="twitter:title"
-          content={`${article.meta} | Cygames Magazine | Cygames`}
+          content={`${article.meta.title} | Cygames Magazine | Cygames`}
         />
-        <meta name="twitter:description" content={article.meta_description} />
+        <meta name="twitter:description" content={article.meta.description} />
 
-        <meta
-          name="twitter:image"
-          content={`https://res.cloudinary.com/cygames-magazine/image/upload/v1643205212/uploads/${article.meta}.png`}
-        />
+        <meta name="twitter:image" content={article.meta.image} />
       </Helmet>
 
       <div className={cx("container", { mobile: isMobile })}>

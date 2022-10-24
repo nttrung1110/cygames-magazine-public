@@ -8,7 +8,7 @@ exports.uploadImage = async (req, res) => {
   const { secure_url, public_id } = await cloudinary.uploader.upload(
     file.path,
     {
-      folder: `cygames-magazine-mobile/${slug}`, // create folder by article's slug in cloudinary
+      folder: `cygames-magazine/${slug}`, // create folder by article's slug in cloudinary
     }
   );
 

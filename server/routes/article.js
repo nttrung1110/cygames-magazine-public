@@ -25,9 +25,11 @@ router.post(
   auth,
   multer.single("thumbnail"),
   (req, res, next) => {
-    const { tags } = req.body;
+    const { tags, meta } = req.body;
 
-    if (tags) req.body.tags = JSON.parse(tags); // convert to array
+    if (tags) req.body.tags = JSON.parse(tags);
+
+    req.body.meta = JSON.parse(meta);
 
     next();
   },
@@ -41,9 +43,11 @@ router.put(
   auth,
   multer.single("thumbnail"),
   (req, res, next) => {
-    const { tags } = req.body;
+    const { tags, meta } = req.body;
 
-    if (tags) req.body.tags = JSON.parse(tags); // convert to array
+    if (tags) req.body.tags = JSON.parse(tags);
+
+    req.body.meta = JSON.parse(meta);
 
     next();
   },

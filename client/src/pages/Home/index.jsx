@@ -35,10 +35,7 @@ const Home = () => {
         <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Cygames Magazine | Cygames" />
-        <meta
-          property="og:image"
-          content={`https://cygames-magazine.netlify.app`}
-        />
+        <meta property="og:image" content={images.ogp} />
         <meta
           property="og:description"
           content="Cygames Magazine's introductory article talks about the magazine's launch as a space to share information about Cygames, its team members, and various events."
@@ -47,16 +44,13 @@ const Home = () => {
         {/* <!-- Twitter Meta Tags --/> */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@CygamesMagazine" />
-        <meta name="twitter:domain" content="cygames-magazine.netlify.app" />
+        <meta name="twitter:domain" content="cygames-magazine.vercel.app" />
         <meta name="twitter:title" content="Cygames Magazine | Cygames" />
         <meta
           name="twitter:description"
           content="Cygames Magazine's introductory article talks about the magazine's launch as a space to share information about Cygames, its team members, and various events."
         />
-        <meta
-          name="twitter:image"
-          content={`https://cygames-magazine.netlify.app`}
-        />
+        <meta name="twitter:image" content={images.ogp} />
       </Helmet>
 
       {!isMobile && (

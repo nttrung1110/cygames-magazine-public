@@ -51,10 +51,10 @@ exports.articleValidator_Create = [
     .not()
     .isEmpty()
     .withMessage("Article meta title is missing!"),
-  check("meta.desctiption")
+  check("meta.description")
     .not()
     .isEmpty()
-    .withMessage("Article meta desctiption is missing!"),
+    .withMessage("Article meta description is missing!"),
   check("meta.image")
     .not()
     .isEmpty()
@@ -86,10 +86,10 @@ exports.articleValidator_Update = [
     .not()
     .isEmpty()
     .withMessage("Article meta title is missing!"),
-  check("meta.desctiption")
+  check("meta.description")
     .not()
     .isEmpty()
-    .withMessage("Article meta desctiption is missing!"),
+    .withMessage("Article meta description is missing!"),
   check("meta.image")
     .not()
     .isEmpty()
