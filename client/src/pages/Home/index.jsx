@@ -47,7 +47,7 @@ const Home = () => {
         {/* <!-- Twitter Meta Tags --/> */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@CygamesMagazine" />
-        <meta name="twitter:domain" content="cygames-magazine.vercel.app" />
+        <meta name="twitter:domain" content="cygames-magazine.netlify.app" />
         <meta name="twitter:title" content="Cygames Magazine | Cygames" />
         <meta
           name="twitter:description"

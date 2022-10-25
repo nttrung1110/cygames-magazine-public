@@ -387,6 +387,88 @@
         background-size: 100% auto;
         background-repeat: no-repeat;
     }
+
+    .linkcard {
+        margin: 0 0 20px;
+        
+        a {
+            text-decoration: none;
+
+            &:hover {
+                opacity: .5;
+
+                .image {
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        .card {
+            padding: 1em;
+            border: 1px solid var(--hover-dark-color);
+        }
+
+        .content {
+            display: flex;
+            margin-bottom: .8em;
+        }
+
+        .image {
+            width: 150px;
+            margin: 0 14px 0 0;
+            transition: transform 0.4s ease;
+
+            img {
+                width: 150px;
+                max-height: 158px;
+                border-radius: 2px;
+            }
+        }
+
+        .title {
+            color: #111111;
+            font-size: 16px;
+            line-height: 18px;
+            font-weight: bold;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .excerpt {
+            margin-top: .8em;
+            color: #666666;
+            font-size: 12px;
+            line-height: 14px;
+        }
+
+        .info {
+            display: flex;
+            align-items: center;
+        }
+
+        .favicon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .domain,
+        .date {
+            color: #222222;
+            font-size: 12px;
+            line-height: 12px;
+        }
+
+        .domain {
+            margin-left: .2em;
+        }
+
+        .date {
+            flex: 1;
+            text-align: right;
+        }
+    }
 }
 
 .article-body.mobile {
@@ -406,7 +488,7 @@
         }
 
     }
-    
+
     .profile {
         padding: 29px 20px 21px;
         font-size: 12px;
@@ -524,5 +606,23 @@
         width: 10.7px;
         height: 8.7px;
         right: 17px;
+    }
+
+    .linkcard {
+        .excerpt {
+            display: none;
+        }
+
+        .image {
+            width: 105px;
+
+            img {
+                width: 105px;
+            }
+        }
+
+        .title {
+            font-size: 12px;
+        }
     }
 }

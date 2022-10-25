@@ -17,7 +17,7 @@ const DeviceView = ({ thumbnail, title, content, setShowDeviceView }) => {
     >
       <div
         className="bg-white rounded overflow-auto px-2"
-        style={{ width: "60%", height: "98%" }}
+        style={{ width: "50%", height: "98%" }}
       >
         <h1 className="text-xl font-semibold text-gray-700 border-b-2 border-gray-500 pb-2 m-2">
           {title}

@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --white-color: #ffffff;
+  --darker-white-color: #f8f8f8;
+  --grey-color: #e5e5e5;
+  --darker-grey-color: #666666;
+  --yellow-color: #fff100;
+  --movie-color: #ffdd00;
+  --dark-color: #000000;
+  --hover-dark-color: #888888;
+  --lighter-dark-color: #333333;
+  --hover-header-color: #444444;
+}
+
 .create_article_button {
   @apply flex 
     items-center 
