@@ -214,7 +214,7 @@ exports.getArticles = async (req, res) => {
     .skip(page * LIMIT - LIMIT)
     .limit(LIMIT)
     .populate("tags", "title slug")
-    .select("slug thumbnail title category tags createdAt");
+    .select("slug thumbnail title category tags createdAt isNewArticle");
 
   const articleCount = await Article.countDocuments(query);
 

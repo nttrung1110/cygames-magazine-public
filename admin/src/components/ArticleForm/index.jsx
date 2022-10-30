@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import DeviceView from "../DeviceView";
 import ImageInput from "../ImageInput";
 import MarkdownRule from "../MarkdownRule";
+import TinyMCE from "../TinyMCE";
 
 import { setTag_slice } from "../../redux/tagSlice";
 import { setToastify_slice } from "../../redux/toastifySlice";
@@ -266,14 +267,7 @@ const ArticleForm = ({
               Content
             </label>
             <ImageInput slug={slug} />
-            <textarea
-              value={content}
-              name="content"
-              id="content"
-              className="create_article_inputField resize-none h-96"
-              placeholder="Article content"
-              onChange={(e) => handleChange(e.target)}
-            ></textarea>
+            <TinyMCE content={content} handleChange={handleChange} />
           </div>
           <div>
             <label htmlFor="category" className="create_article_label">
